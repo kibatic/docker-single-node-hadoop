@@ -1,2 +1,2 @@
-hadoop:
-  image: hadoopsn
+hsn:
+  build: .
