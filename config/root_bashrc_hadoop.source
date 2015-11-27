@@ -1,0 +1,9 @@
+source /etc/profile
+
+HADOOP_PREFIX=/usr/local/hadoop
+export HADOOP_PREFIX
+export PATH=$PATH:/usr/local/hadoop/bin
+
+source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+source /usr/local/hadoop/etc/hadoop/yarn-env.sh
+source /usr/local/hadoop/etc/hadoop/mapred-env.sh
