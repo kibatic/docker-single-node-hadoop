@@ -16,6 +16,12 @@ State of the project : running, not optimized. I'm interested by any feedback.
 Quickstart
 ----------
 
+### clone the project
+
+```bash
+git clone https://github.com/kibatic/docker-single-node-hadoop.git
+```
+
 ### create the container
 
 ```
