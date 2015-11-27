@@ -56,7 +56,8 @@ ADD config/etc_hadoop_mapred-site.xml /etc/hadoop/mapred-site.xml
 ADD config/etc_hadoop_hdfs-site.xml /etc/hadoop/hdfs-site.xml
 ADD config/etc_hadoop_capacity-scheduler.xml /etc/hadoop/capacity-scheduler.xml
 RUN chmod u+x /root/start.sh
-
+RUN mkdir -p /data/yarn/nodemanager/log /data/yarn/nodemanager/data /data/hdfs/datanode /data/hdfs/namenode
+RUN mkdir -p /data/transfert
 
 # slave management
 ADD config/etc_hadoop_slaves /etc/hadoop/slaves
@@ -70,6 +71,9 @@ RUN chmod a+x /example/*.py
 
 # install spark
 ADD config/SPARK_HOME_conf_spark-env.sh /usr/local/spark/conf/spark-env.sh
+
+# install data
+VOLUME ["/data"]
 
 # Cleanup of installation files
 #RUN \

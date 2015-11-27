@@ -10,4 +10,12 @@
         <name>yarn.resourcemanager.hostname</name>
         <value>localhost</value>
     </property>
+    <property>
+        <name>yarn.nodemanager.local-dirs</name>
+        <value>/data/yarn/nodemanager/data</value>
+    </property>
+    <property>
+        <name>yarn.nodemanager.log-dirs</name>
+        <value>/data/yarn/nodemanager/log</value>
+    </property>
 </configuration>

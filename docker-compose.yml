@@ -1,2 +1,4 @@
 hsn:
   build: .
+  volumes:
+    - ./docker_data:/data

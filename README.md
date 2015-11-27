@@ -87,7 +87,15 @@ docker-compose start
 docker-compose stop
 ```
 
-### 
+### volume /data in the ./data_docker directory
+
+This directory is a shared volume with the /data of the container.
+
+In this directory we have :
+
+* /data/hdfs for hdfs files
+* /data/yarn for yarn files
+* /data/transfert just for easy tranfert between the host and the container.
 
 Run container manually from dockerfile
 --------------------------------------
