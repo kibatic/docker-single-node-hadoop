@@ -47,6 +47,7 @@ ADD config/etc_hadoop_core-site.xml /etc/hadoop/core-site.xml
 ADD config/etc_hadoop_yarn-site.xml /etc/hadoop/yarn-site.xml
 ADD config/etc_hadoop_mapred-site.xml /etc/hadoop/mapred-site.xml
 ADD config/etc_hadoop_hdfs-site.xml /etc/hadoop/hdfs-site.xml
+ADD config/etc_hadoop_capacity-scheduler.xml /etc/hadoop/capacity-scheduler.xml
 RUN chmod u+x /root/start.sh
 
 

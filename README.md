@@ -4,10 +4,7 @@ Docker for a single node hadoop installation
 This repository is used to create an hadoop single instance following the documentation on this page :
 http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html
 
-**State of this dockerfile**
-
-* HDFS and local map reducer are up and running.
-* I still don't manage to make yarn work...
+State of the project : running, not optimized. I'm interested by any feedback.
 
 Quickstart
 ----------
