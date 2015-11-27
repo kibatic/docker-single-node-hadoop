@@ -30,6 +30,13 @@ RUN \
     echo "load hadoop (200MB)" && wget -q -O /root/hadoop.tar.gz http://apache.crihan.fr/dist/hadoop/common/hadoop-2.7.1/hadoop-2.7.1.tar.gz && \
     echo "untar file" && cd /root && tar zxf hadoop.tar.gz && \
     mv hadoop-2.7.1 /usr/local/hadoop
+# download spark
+RUN \
+    echo "load spark (183MB)" && \
+    wget -q -O /root/spark-bin-without-hadoop.tgz http://d3kbcqa49mib13.cloudfront.net/spark-1.5.2-bin-without-hadoop.tgz
+RUN cd /root && tar zxf spark-bin-without-hadoop.tgz
+RUN mv /root/spark-1.5.2-bin-without-hadoop /usr/local/spark
+
 
 # install ssh and run through supervisor
 RUN apt-get install -y ssh supervisor
@@ -60,6 +67,9 @@ ADD example/fichier.txt /example/fichier.txt
 ADD example/mapper.py /example/mapper.py
 ADD example/reducer.py /example/reducer.py
 RUN chmod a+x /example/*.py
+
+# install spark
+ADD config/SPARK_HOME_conf_spark-env.sh /usr/local/spark/conf/spark-env.sh
 
 # Cleanup of installation files
 #RUN \

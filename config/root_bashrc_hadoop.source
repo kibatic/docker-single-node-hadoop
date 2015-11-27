@@ -1,9 +1,12 @@
 source /etc/profile
 
-HADOOP_PREFIX=/usr/local/hadoop
-export HADOOP_PREFIX
-export PATH=$PATH:/usr/local/hadoop/bin
+export HADOOP_PREFIX=/usr/local/hadoop
+export HADOOP_HOME=$HADOOP_PREFIX
+export YARN_CONF_DIR=$HADOOP_PREFIX/etc
+export SPARK_HOME=/usr/local/spark
+export PATH=$PATH:$HADOOP_PREFIX/bin:$SPARK_HOME/bin
 
-source /usr/local/hadoop/etc/hadoop/hadoop-env.sh
-source /usr/local/hadoop/etc/hadoop/yarn-env.sh
-source /usr/local/hadoop/etc/hadoop/mapred-env.sh
+source $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
+source $HADOOP_PREFIX/etc/hadoop/yarn-env.sh
+source $HADOOP_PREFIX/etc/hadoop/mapred-env.sh
+source $SPARK_HOME/conf/spark-env.sh
