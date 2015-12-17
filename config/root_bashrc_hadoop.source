@@ -4,7 +4,8 @@ export HADOOP_PREFIX=/usr/local/hadoop
 export HADOOP_HOME=$HADOOP_PREFIX
 export YARN_CONF_DIR=$HADOOP_PREFIX/etc
 export SPARK_HOME=/usr/local/spark
-export PATH=$PATH:$HADOOP_PREFIX/bin:$SPARK_HOME/bin
+export HIVE_HOME=/usr/local/hive
+export PATH=$PATH:$HADOOP_PREFIX/bin:$SPARK_HOME/bin:$HIVE_HOME/bin
 
 source $HADOOP_PREFIX/etc/hadoop/hadoop-env.sh
 source $HADOOP_PREFIX/etc/hadoop/yarn-env.sh

@@ -1,4 +1,17 @@
 hsn:
-  build: .
-  volumes:
-    - ./docker_data:/data
+    build: .
+    volumes:
+        - ./docker_data:/data
+    ports:
+        - "127.0.0.1:9000:9000"
+        - "127.0.0.1:50070:50070"
+        - "127.0.0.1:8088:8088"
+        - "127.0.0.1:19888:19888"
+        - "127.0.0.1:10020:10020"
+
+# hue:
+#     build: ./hue/
+#     ports:
+#         - "127.0.0.1:8888:8888"
+#     links:
+#         - hadoop:hsn

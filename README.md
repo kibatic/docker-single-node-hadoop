@@ -10,8 +10,12 @@ Features :
 * hadoop / hdfs
 * yarn
 * spark
+* hive
 
-State of the project : running, not optimized. I'm interested by any feedback.
+State of the project :
+
+* Hadoop, yarn, spark, hive : running, not optimized. I'm interested by any feedback.
+* Hue : in early alpha stage (it doesn't work...). It will probably be removed from this
 
 Quickstart
 ----------

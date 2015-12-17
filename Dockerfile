@@ -48,14 +48,12 @@ ADD config/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 # copy hadoop configs
 ADD config/root_bashrc_hadoop.source /root/.bashrc
-ADD docker/start.sh /root/start.sh
 RUN mkdir /etc/hadoop
 ADD config/etc_hadoop_core-site.xml /etc/hadoop/core-site.xml
 ADD config/etc_hadoop_yarn-site.xml /etc/hadoop/yarn-site.xml
 ADD config/etc_hadoop_mapred-site.xml /etc/hadoop/mapred-site.xml
 ADD config/etc_hadoop_hdfs-site.xml /etc/hadoop/hdfs-site.xml
 ADD config/etc_hadoop_capacity-scheduler.xml /etc/hadoop/capacity-scheduler.xml
-RUN chmod u+x /root/start.sh
 RUN mkdir -p /data/yarn/nodemanager/log /data/yarn/nodemanager/data /data/hdfs/datanode /data/hdfs/namenode
 RUN mkdir -p /data/transfert
 
@@ -72,8 +70,32 @@ RUN chmod a+x /example/*.py
 # install spark
 ADD config/SPARK_HOME_conf_spark-env.sh /usr/local/spark/conf/spark-env.sh
 
+# install hive
+RUN \
+    echo "load hive (90MB)" && wget -q -O /root/hive-bin.tar.gz http://apache.mirrors.ovh.net/ftp.apache.org/dist/hive/hive-1.2.1/apache-hive-1.2.1-bin.tar.gz && \
+    echo "untar file" && cd /root && tar zxf hive-bin.tar.gz && \
+    mv apache-hive-1.2.1-bin /usr/local/hive
+
+# add start script
+ADD docker/start.sh /root/start.sh
+RUN chmod u+x /root/start.sh
+
 # install data
 VOLUME ["/data"]
+
+# Expose ports
+# hdfs port
+EXPOSE 9000
+EXPOSE 8020
+# namenode port
+EXPOSE 50070
+# Resouce Manager
+EXPOSE 8032
+EXPOSE 8088
+# MapReduce JobHistory Server Web UI
+EXPOSE 19888
+# MapReduce JobHistory Server
+EXPOSE 10020
 
 # Cleanup of installation files
 #RUN \

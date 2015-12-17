@@ -14,6 +14,13 @@ if [ ! -f "$IS_HDFS_FORMATED_FILE" ]; then
     echo `date` >> $IS_HDFS_FORMATED_FILE
 fi
 
+# create directories for hive
+hdfs dfs -ls /tmp
+rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /tmp ; fi
+hdfs dfs -ls /user/hive/warehouse
+rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /user/hive/warehouse ; fi
+
+
 # start ssh
 /usr/sbin/sshd
 # start hdfs
