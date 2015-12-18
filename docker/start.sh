@@ -2,6 +2,7 @@
 
 # constants
 IS_HDFS_FORMATED_FILE=/data/hdfs/is_hdfs_formatted.txt
+ZEPPELIN_NOTEBOOK_DIR=/data/zeppelin/notebook
 
 # defines env, path,...
 source /root/.bashrc
@@ -14,11 +15,11 @@ if [ ! -f "$IS_HDFS_FORMATED_FILE" ]; then
     echo `date` >> $IS_HDFS_FORMATED_FILE
 fi
 
-# create directories for hive
-hdfs dfs -ls /tmp
-rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /tmp ; fi
-hdfs dfs -ls /user/hive/warehouse
-rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /user/hive/warehouse ; fi
+# create Zeppelin notebook dir
+if [ ! -d $ZEPPELIN_NOTEBOOK_DIR ]; then
+    echo "create zeppelin notebook dir : $ZEPPELIN_NOTEBOOK_DIR"
+    mkdir -p $ZEPPELIN_NOTEBOOK_DIR
+fi
 
 
 # start ssh
@@ -27,6 +28,14 @@ rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /user/hive/warehouse ; fi
 $HADOOP_PREFIX/sbin/start-dfs.sh
 # start yarn
 $HADOOP_PREFIX/sbin/start-yarn.sh
+# start Zeppelin
+$ZEPPELIN_HOME/bin/zeppelin-daemon.sh start
+
+# create directories for hive
+hdfs dfs -ls /tmp
+rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /tmp ; fi
+hdfs dfs -ls /user/hive/warehouse
+rc=$?; if [[ $rc != 0 ]]; then hdfs dfs -mkdir -p /user/hive/warehouse ; fi
 
 # start supervisord for sshd
 /usr/bin/supervisord

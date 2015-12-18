@@ -44,7 +44,6 @@ RUN mkdir /var/run/sshd
 RUN ssh-keygen -t dsa -P '' -f ~/.ssh/id_dsa
 RUN cat ~/.ssh/id_dsa.pub >> ~/.ssh/authorized_keys
 RUN /usr/sbin/sshd && ssh-keyscan -H localhost >> /root/.ssh/known_hosts && ssh-keyscan -H 127.0.0.1 >> /root/.ssh/known_hosts
-ADD config/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
 
 # copy hadoop configs
 ADD config/root_bashrc_hadoop.source /root/.bashrc
@@ -76,6 +75,25 @@ RUN \
     echo "untar file" && cd /root && tar zxf hive-bin.tar.gz && \
     mv apache-hive-1.2.1-bin /usr/local/hive
 
+# install zeppelin
+RUN apt-get -y install \
+    build-essential \
+    libfontconfig
+
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash
+RUN apt-get install -y nodejs
+RUN \
+    echo "load maven (8 MB)" && wget -q -O /root/maven-bin.tar.gz http://www.eu.apache.org/dist/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz && \
+    echo "untar file" && cd /root && tar zxf maven-bin.tar.gz  -C /usr/local/ && \
+    ln -s /usr/local/apache-maven-3.3.3/bin/mvn /usr/local/bin/mvn
+RUN \
+    echo "load zepplin (447 MB)" && wget -q -O /root/zeppelin-bin.tar.gz http://apache.crihan.fr/dist/incubator/zeppelin/0.5.5-incubating/zeppelin-0.5.5-incubating-bin-all.tgz && \
+    echo "untar file" && cd /root && tar zxf zeppelin-bin.tar.gz  -C /usr/local/ && \
+    ln -s /usr/local/zeppelin-0.5.5-incubating-bin-all /usr/local/zeppelin
+
+# configuration of supervisord
+ADD config/supervisor.conf /etc/supervisor/conf.d/supervisor.conf
+
 # add start script
 ADD docker/start.sh /root/start.sh
 RUN chmod u+x /root/start.sh
@@ -96,6 +114,8 @@ EXPOSE 8088
 EXPOSE 19888
 # MapReduce JobHistory Server
 EXPOSE 10020
+# Zeppelin
+EXPOSE 8080
 
 # Cleanup of installation files
 #RUN \
