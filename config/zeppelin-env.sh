@@ -2,6 +2,11 @@
 
 export SPARK_HOME=/usr/local/spark
 export ZEPPELIN_NOTEBOOK_DIR=/data/zeppelin/notebook
+export SPARK_CONF_DIR=$SPARK_HOME/conf
+export HADOOP_HOME=/usr/local/hadoop
+export HADOOP_CONF_DIR=$HADOOP_HOME/etc/hadoop
+#export SPARK_YARN_JAR=/usr/local/spark/lib/spark-assembly-1.5.2-hadoop2.2.0.jar
+
 
 
 #

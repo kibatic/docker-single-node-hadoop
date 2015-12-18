@@ -32,10 +32,10 @@ RUN \
     mv hadoop-2.7.1 /usr/local/hadoop
 # download spark
 RUN \
-    echo "load spark (183MB)" && \
-    wget -q -O /root/spark-bin-without-hadoop.tgz http://d3kbcqa49mib13.cloudfront.net/spark-1.5.2-bin-without-hadoop.tgz
+    echo "load spark (184MB)" && \
+    wget -q -O /root/spark-bin-without-hadoop.tgz http://wwwftp.ciril.fr/pub/apache/spark/spark-1.5.1/spark-1.5.1-bin-without-hadoop.tgz
 RUN cd /root && tar zxf spark-bin-without-hadoop.tgz
-RUN mv /root/spark-1.5.2-bin-without-hadoop /usr/local/spark
+RUN mv /root/spark-1.5.1-bin-without-hadoop /usr/local/spark
 
 
 # install ssh and run through supervisor
@@ -90,6 +90,10 @@ RUN \
     echo "load zepplin (447 MB)" && wget -q -O /root/zeppelin-bin.tar.gz http://apache.crihan.fr/dist/incubator/zeppelin/0.5.5-incubating/zeppelin-0.5.5-incubating-bin-all.tgz && \
     echo "untar file" && cd /root && tar zxf zeppelin-bin.tar.gz  -C /usr/local/ && \
     ln -s /usr/local/zeppelin-0.5.5-incubating-bin-all /usr/local/zeppelin
+
+RUN apt-get install -y telnet net-tools
+
+ADD config/zeppelin-env.sh /usr/local/zeppelin/conf/zeppelin-env.sh
 
 # configuration of supervisord
 ADD config/supervisor.conf /etc/supervisor/conf.d/supervisor.conf

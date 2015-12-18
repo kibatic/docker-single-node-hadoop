@@ -29,7 +29,8 @@ $HADOOP_PREFIX/sbin/start-dfs.sh
 # start yarn
 $HADOOP_PREFIX/sbin/start-yarn.sh
 # start Zeppelin
-$ZEPPELIN_HOME/bin/zeppelin-daemon.sh start
+# hack warning : the pid detection is not ok in the zeppelin-daemon.sh start script. Then we prefer to use restart instead of start.
+$ZEPPELIN_HOME/bin/zeppelin-daemon.sh restart
 
 # create directories for hive
 hdfs dfs -ls /tmp
