@@ -19,6 +19,7 @@ fi
 if [ ! -d $ZEPPELIN_NOTEBOOK_DIR ]; then
     echo "create zeppelin notebook dir : $ZEPPELIN_NOTEBOOK_DIR"
     mkdir -p $ZEPPELIN_NOTEBOOK_DIR
+    cp -rp /usr/local/zeppelin/notebook/* $ZEPPELIN_NOTEBOOK_DIR
 fi
 
 

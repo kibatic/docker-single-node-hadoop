@@ -11,11 +11,11 @@ Features :
 * yarn
 * spark
 * hive
+* zeppelin
 
 State of the project :
 
-* Hadoop, yarn, spark, hive : running, not optimized. I'm interested by any feedback.
-* Hue : in early alpha stage (it doesn't work...). It will probably be removed from this
+* Hadoop, yarn, spark, hive, zeppelin : running, not optimized. I'm interested by any feedback.
 
 Quickstart
 ----------
@@ -32,6 +32,10 @@ git clone https://github.com/kibatic/docker-single-node-hadoop.git
 docker-compose build
 docker-compose up -d
 ```
+
+### Zeppelin notebook
+
+You can access to Zeppelin at http://localhost:8002
 
 ### Run a basic map reduce example
 
