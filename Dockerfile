@@ -1,6 +1,6 @@
 FROM debian:jessie
 
-MAINTAINER Philippe Le Van <philippe.levan [at] kibatic.com>
+MAINTAINER Philippe Le Van <@plv on twitter>
 
 # install base
 RUN apt-get update && apt-get -y install \
