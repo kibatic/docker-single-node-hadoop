@@ -1,6 +1,8 @@
 Docker for a single node hadoop installation
 ============================================
 
+⚠️ [Deprecated] I'm not using this package anymore. If someone want to maintain it or to fork it and maintain the fork, can you contact me (@plv on twitter). I can write a link to your package here.
+
 This repository is used to create an hadoop single instance following the documentation on this page :
 http://hadoop.apache.org/docs/current/hadoop-project-dist/hadoop-common/SingleCluster.html and the doc
 of spark.
